@@ -34,9 +34,9 @@ That command will start a local web server to handle requests for [http://localh
 
 ### Run the Tests
 
-You can always check your work yourself (and you should), but this project also offers automated "end-to-end tests" to ensure our game meets each exercise's acceptance criteria. These tests use a tool called [Playwright](https://playwright.dev/) to open a web browser and do some of that testing for us.
+You can always check your work yourself (and you should!), but this project also offers automated "end-to-end tests" to ensure our game meets each exercise's acceptance criteria. These tests use a tool called [Playwright](https://playwright.dev/) to open a web browser and do some of that testing for us.
 
-Remember that some of the exercises include acceptance criteria based on _implementation details_ like component architecture and state handling that aren't testable in the browser, so you'll still have to check those kinds of things on your own.
+Remember that some of the exercises include acceptance criteria based on _implementation details_ like component architecture and state handling, so you still need to check those kinds of things by reviewing your own code.
 
 To run the end-to-end tests:
 
