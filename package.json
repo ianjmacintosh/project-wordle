@@ -20,5 +20,9 @@
     "build": "parcel build public/index.html",
     "new-component": "new-component"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.2"
+  }
 }
