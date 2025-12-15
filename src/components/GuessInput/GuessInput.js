@@ -20,6 +20,7 @@ function GuessInput() {
     <label htmlFor="guess-input">Enter guess:</label>
     <input id="guess-input" type="text" value={guess} onChange={handleGuessChange}
       pattern="[a-zA-Z]{5,5}"
+      required
       title="Your guess must be exactly five letters" />
   </form>);
 }
