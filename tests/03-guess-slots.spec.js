@@ -10,7 +10,7 @@ test.skip('Create a new `Guess` component. 6 instances should be rendered at all
 test('The `Guess` component should render 5 spans, each with the class of `cell`.', async ({ page }) => {
     const cells = page.locator("span.cell")
 
-    expect(cells).toHaveCount(30)
+    await expect(cells).toHaveCount(30)
 });
 
 test('Each cell should contain a letter, if the `Guess` instance has been given a value. If not, the cell should be blank.', async ({ page }) => {
