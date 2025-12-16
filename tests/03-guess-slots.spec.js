@@ -16,6 +16,8 @@ test('The `Guess` component should render 5 spans, each with the class of `cell`
 test('Each cell should contain a letter, if the `Guess` instance has been given a value. If not, the cell should be blank.', async ({ page }) => {
     const cells = page.locator("span.cell")
 
+    await expect(cells.first()).toHaveText("")
+
     const input = page.locator("input")
     await input.fill("ABCDE")
     await input.press("Enter")
