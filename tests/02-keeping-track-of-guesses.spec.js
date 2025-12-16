@@ -35,10 +35,19 @@ test(`There should be no key warnings in the console!`, async ({ page }) => {
     const input = page.locator("input")
 
     await input.fill("ABCDE")
-    await input.press("Enter");
+    await input.press("Enter")
 
-    await input.fill("SCRUM")
-    await input.press("Enter");
+    await input.fill("KEYUP")
+    await input.press("Enter")
+
+    await input.fill("TOOLONG")
+    await input.press("Enter")
+
+    await input.fill("KEYUP")
+    await input.press("Enter")
+
+    await input.fill("FAIL")
+    await input.press("Enter")
 
     expect(keyWarnings).toHaveLength(0)
 })
