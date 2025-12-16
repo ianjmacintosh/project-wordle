@@ -32,7 +32,7 @@ function Game() {
   }
 
   return <>
-    <GuessResults guesses={guesses} />
+    <GuessResults guesses={guesses} answer={answer} />
     <GuessInput addGuess={(value) => {
       updateGuess(value, currentGuess)
     }
