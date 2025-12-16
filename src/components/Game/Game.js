@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { sample } from '../../utils';
+import { range, sample } from '../../utils';
 import { WORDS } from '../../data';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 import GuessInput from '../GuessInput'
 import GuessResults from '../GuessResults';
 
@@ -11,20 +12,31 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guesses, setGuesses] = React.useState([]);
+  const defaultGuesses = range(NUM_OF_GUESSES_ALLOWED).map((num) => {
+    return { id: `guess_${num}`, value: '' }
+  })
+  const [currentGuess, setCurrentGuess] = React.useState(0);
+  const [guesses, setGuesses] = React.useState(defaultGuesses);
 
-  const addGuess = (guess) => {
-    const nextGuesses = [...guesses, {
-      id: crypto.randomUUID(),
-      value: guess
-    }]
+  const updateGuess = (guess, guessNumber) => {
+    if (currentGuess >= NUM_OF_GUESSES_ALLOWED) {
+      window.alert(`Sorry, you've reached the limit of ${NUM_OF_GUESSES_ALLOWED} guesses`)
+      return
+    }
+    const nextGuesses = [...guesses]
+
+    nextGuesses[currentGuess].value = guess
 
     setGuesses(nextGuesses)
+    setCurrentGuess(currentGuess + 1)
   }
 
   return <>
     <GuessResults guesses={guesses} />
-    <GuessInput addGuess={addGuess} />
+    <GuessInput addGuess={(value) => {
+      updateGuess(value, currentGuess)
+    }
+    } />
   </>;
 }
 
