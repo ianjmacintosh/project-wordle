@@ -13,7 +13,9 @@ function Guess({ value, id, answer }) {
 
   return (<p className="guess">
     {lettersInfo.map(({ letter, status }, index) => {
-      return <span key={`${id}-letter_${index}`} className={`cell ${status ? status : ""}`.trim()}>{letter}</span>
+      const className = status !== undefined ? `cell ${status}`
+        : `cell`
+      return <span key={`${id}-letter_${index}`} className={className}>{letter}</span>
     }
     )}
   </p>);
