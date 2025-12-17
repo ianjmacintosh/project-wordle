@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { range, sample } from '../../utils';
+import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
-import Banner from '../Banner'
+import WonBanner from '../WonBanner'
+import LostBanner from '../LostBanner'
 import GuessInput from '../GuessInput'
 import GuessResults from '../GuessResults';
 
@@ -34,7 +35,8 @@ function Game() {
 
 
   return <>
-    {gameStatus !== "active" && <Banner gameStatus={gameStatus} guessCount={guesses.length} answer={answer} />}
+    {gameStatus === "won" && <WonBanner guessCount={guesses.length} />}
+    {gameStatus === "lost" && <LostBanner answer={answer} />}
     <GuessResults guesses={guesses} answer={answer} />
     <GuessInput disabled={gameStatus !== "active"} addGuess={(value) => {
       updateGuess(value)

@@ -1,7 +1,12 @@
 import React from 'react';
 
-function LostBanner() {
-  return <div></div>;
+import Banner from '../Banner'
+
+function LostBanner({ answer }) {
+  return (
+    <Banner className="sad">
+      <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>
+    </Banner>);
 }
 
 export default LostBanner;
