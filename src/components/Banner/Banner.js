@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Banner({ gameStatus, guessCount }) {
+function Banner({ gameStatus, guessCount, answer }) {
   switch (gameStatus) {
     case "won":
       return (<div className="happy banner">
@@ -10,7 +10,7 @@ function Banner({ gameStatus, guessCount }) {
       </div>);
     case "lost":
       return (<div className="sad banner">
-        <p>Sorry, the correct answer is <strong>LEARN</strong>.</p>
+        <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>
       </div>);
     default:
       return <div>We've found a weird status! You're in <code>{gameStatus}</code> status!!</div>

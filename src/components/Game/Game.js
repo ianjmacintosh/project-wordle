@@ -34,7 +34,7 @@ function Game() {
 
 
   return <>
-    {gameStatus !== "active" && <Banner gameStatus={gameStatus} guessCount={guesses.length} />}
+    {gameStatus !== "active" && <Banner gameStatus={gameStatus} guessCount={guesses.length} answer={answer} />}
     <GuessResults guesses={guesses} answer={answer} />
     <GuessInput disabled={gameStatus !== "active"} addGuess={(value) => {
       updateGuess(value)
