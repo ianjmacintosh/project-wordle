@@ -13,40 +13,32 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const defaultGuesses = range(NUM_OF_GUESSES_ALLOWED).map((num) => {
-    return { id: `guess_${num}`, value: '' }
-  })
-  const [currentGuess, setCurrentGuess] = React.useState(0);
-  const [guesses, setGuesses] = React.useState(defaultGuesses);
-  const [gameStatus, setGameStatus] = React.useState("active")
+  const getGameStatus = (guesses, maxGuesses) => {
+    if (guesses[guesses.length - 1]?.value === answer) return "won"
+    else if (guesses.length >= maxGuesses) return "lost"
+    return "active"
+  }
+
+  const [guesses, setGuesses] = React.useState([]);
+  const gameStatus = getGameStatus(guesses, NUM_OF_GUESSES_ALLOWED)
+
 
   const updateGuess = (guess, guessNumber) => {
-    if (currentGuess >= NUM_OF_GUESSES_ALLOWED) {
-      window.alert(`Sorry, you've reached the limit of ${NUM_OF_GUESSES_ALLOWED} guesses`)
-      return
-    }
+    const nextGuesses = [...guesses, {
+      id: crypto.randomUUID(),
+      value: guess
+    }]
 
-    const nextGuesses = [...guesses]
-    nextGuesses[currentGuess].value = guess
     setGuesses(nextGuesses)
-
-    setCurrentGuess(currentGuess + 1)
-
-    if (guesses[currentGuess].value === answer) {
-      setGameStatus("won")
-    } else if (currentGuess + 1 >= NUM_OF_GUESSES_ALLOWED) {
-      setGameStatus("lost")
-    }
   }
 
 
   return <>
-    {gameStatus !== "active" && <Banner gameStatus={gameStatus} guessCount={currentGuess} />}
+    {gameStatus !== "active" && <Banner gameStatus={gameStatus} guessCount={guesses.length} />}
     <GuessResults guesses={guesses} answer={answer} />
     <GuessInput disabled={gameStatus !== "active"} addGuess={(value) => {
-      updateGuess(value, currentGuess)
-    }
-    } />
+      updateGuess(value)
+    }} />
   </>;
 }
 
