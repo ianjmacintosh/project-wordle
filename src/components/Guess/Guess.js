@@ -2,7 +2,7 @@ import React from 'react';
 
 import { checkGuess } from '../../game-helpers'
 
-function Guess({ value, id, answer }) {
+function Guess({ value, id, answer, guessCount }) {
   // Handle empty guesses by making an array of 5 "empty" letters
   const lettersInfo = value.length === 0 ? Array(5).fill({
     letter: undefined,
