@@ -20,6 +20,32 @@ If you're not sure how to run a local development server, or if you run into som
 >
 > This workshop is split into 5 exercises, and each exercise has a solution video. If you spend more than 10 minutes stuck on an exercise, I encourage you to **watch the solution.** If things are still unclear after that, please ask questions in the Discord community!
 
+## Development Workflow
+
+### Start the Web Server
+
+To start the app:
+
+```
+npm run dev
+```
+
+That command will start a local web server to handle requests for [http://localhost:1234/](http://localhost:1234/)
+
+### Run the Tests
+
+You can always check your work yourself (and you should!), but this project also offers automated "end-to-end tests" to ensure our game meets each exercise's acceptance criteria. These tests use a tool called [Playwright](https://playwright.dev/) to open a web browser and do some of that testing for us.
+
+Remember that some of the exercises include acceptance criteria based on _implementation details_ like component architecture and state handling, so you still need to check those kinds of things by reviewing your own code.
+
+To run the end-to-end tests:
+
+```
+npm run test:e2e
+```
+
+> 💡 By default, each test file is set up to skip all its tests. That is on purpose because we don't expect to be done with the exercises we haven't started yet. As you progress through each exercise, you can enable each its associated tests
+
 ## Exercise 1: GuessInput
 
 First thing’s first: we need a way to submit guesses!

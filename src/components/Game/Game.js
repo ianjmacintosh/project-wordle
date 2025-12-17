@@ -2,6 +2,11 @@ import React from 'react';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import WonBanner from '../WonBanner'
+import LostBanner from '../LostBanner'
+import GuessInput from '../GuessInput'
+import GuessResults from '../GuessResults';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -9,7 +14,34 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  return <>Put a game here!</>;
+  const getGameStatus = (guesses, maxGuesses) => {
+    if (guesses[guesses.length - 1]?.value === answer) return "won"
+    else if (guesses.length >= maxGuesses) return "lost"
+    return "active"
+  }
+
+  const [guesses, setGuesses] = React.useState([]);
+  const gameStatus = getGameStatus(guesses, NUM_OF_GUESSES_ALLOWED)
+
+
+  const updateGuess = (guess, guessNumber) => {
+    const nextGuesses = [...guesses, {
+      id: crypto.randomUUID(),
+      value: guess
+    }]
+
+    setGuesses(nextGuesses)
+  }
+
+
+  return <>
+    {gameStatus === "won" && <WonBanner guessCount={guesses.length} />}
+    {gameStatus === "lost" && <LostBanner answer={answer} />}
+    <GuessResults guesses={guesses} answer={answer} />
+    <GuessInput disabled={gameStatus !== "active"} addGuess={(value) => {
+      updateGuess(value)
+    }} />
+  </>;
 }
 
 export default Game;
